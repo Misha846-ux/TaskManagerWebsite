@@ -20,7 +20,7 @@ const LoginInput = () =>{
     };
     return(
         <form onSubmit={handleSubmit}>
-            <h1>Sign In Form</h1>
+            <h1 className="top">Sign In Form</h1>
             <p><b><label className="lable">Login *</label></b></p>
             <input
             className="input"
@@ -41,7 +41,7 @@ const LoginInput = () =>{
             onChange={handleChange}
             required
             />
-            <p><button className="button" type="submit"><b>Sign In</b></button></p>
+            <p className="button_center"><button className="button" type="submit"><b>Sign In</b></button></p>
         </form>
     );
 };
