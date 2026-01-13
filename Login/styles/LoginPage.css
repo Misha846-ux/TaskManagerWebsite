@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoginPage{
+    display: flex;
+    height: 80vh;
+    width: 100vh;
+    gap:10px;
+}

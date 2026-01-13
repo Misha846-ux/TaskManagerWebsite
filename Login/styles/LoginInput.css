@@ -1,0 +1,30 @@
+.input{
+    border: 3px solid black;
+    border-radius: 10px;
+    font-size: 25px;
+    margin: 20px;
+    background-color: rgb(221, 217, 217);
+}
+.lable{
+    color: red;
+    font-size: 26px;
+}
+.button{
+    background-color: orange;
+    margin: 20px;
+    font-size: 25px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+}
+.top{
+    text-align: center;
+    color: red;
+}
+.button_center{
+    align-self: center;
+}
