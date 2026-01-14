@@ -1,11 +1,12 @@
 import type { Profile } from "./type/Profile";
 import { useState } from "react";
+import profile_img from "./photo/profile_image.jpeg";
 import "./styles/Header.css";
 const Header:React.FC = () =>{
     const profile:Profile={
         name: "Ruslan",
         surname:"Opihaylenko",
-        image:"https://img-webcalypt.ru/uploads/admin/images/meme-templates/B2TIpQn2PQORVmrbq3rLsO8pX01kJ2R6.jpeg",
+        image: profile_img,
     };
         const [isOpen, setIsOpen] = useState<boolean>(false);
         const toggleSidebar = () =>{

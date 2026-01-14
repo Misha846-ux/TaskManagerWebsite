@@ -19,9 +19,9 @@ const LoginInput = () =>{
         console.log(user);
     };
     return(
-        <form onSubmit={handleSubmit}>
-            <h1 className="top">Sign In Form</h1>
-            <p><b><label className="lable">Login *</label></b></p>
+        <form className="LoginInput" onSubmit={handleSubmit}>
+            <h1 className="top">Sign In</h1>
+            <label className="lable">Login</label>
             <input
             className="input"
             type="text"
@@ -31,7 +31,7 @@ const LoginInput = () =>{
             onChange={handleChange}
             required
             />
-            <p><b><label className="lable">Password *</label></b></p>
+            <label className="lable">Password</label>
             <input
             className="input"
             type="text"
@@ -41,7 +41,7 @@ const LoginInput = () =>{
             onChange={handleChange}
             required
             />
-            <p className="button_center"><button className="button" type="submit"><b>Sign In</b></button></p>
+            <button className="button" type="submit"><b>Sign In</b></button>
         </form>
     );
 };

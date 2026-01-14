@@ -1,9 +1,12 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import LoginPage from './Login/LoginPage'
+import LoginMain from './Login/LoginMain'
+import Header from './Header/Header'
+import MainPage from './Pages/Main/MainPage'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <LoginPage />
-  </StrictMode>,
+  <>
+    <LoginMain/>
+    <Header/>
+    {/* <MainPage/> */}
+  </>
 )
