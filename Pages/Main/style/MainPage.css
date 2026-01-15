@@ -29,3 +29,15 @@
     overflow: auto;
     border-radius: 15px;
 }
+.Calendar-YourProject{
+    display: flex;
+    height: 21%;
+    width: 99%;
+    border: none;
+}
+.Fake_calendar{
+    height: 99%;
+    width: 25%;
+    background-color: white;
+    margin-left: 10%;
+}
