@@ -2,6 +2,7 @@ import type { Profile } from "./type/Profile";
 import { useState } from "react";
 import profile_img from "./photo/profile_image.jpeg";
 import "./styles/Header.css";
+import { NavLink } from "react-router-dom";
 type HeaderProps = {
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
