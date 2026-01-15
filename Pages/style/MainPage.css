@@ -9,16 +9,6 @@
     grid-template-columns: 20% 1fr;
 }
 
-.sidebar {
-  overflow: hidden;
-  background: white;
-  color:#222;
-}
-
-.sidebar_top{
-    text-align: center;
-}
-
 .main {
     display: grid;
     grid-template-rows: 8vh 1fr;

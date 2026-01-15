@@ -1,0 +1,9 @@
+.sidebar {
+  overflow: hidden;
+  background: white;
+  color:#222;
+}
+
+.sidebar_top{
+    text-align: center;
+}

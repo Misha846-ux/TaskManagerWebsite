@@ -7,8 +7,6 @@
 .dash_button{
     width: 4%;
     height: 85%;
-    margin: 15px;
-    margin-left: 25px;
     background-image: url("/src/Header/photo/sidebar_button.png");
     background-size: contain; 
     background-position: center;
