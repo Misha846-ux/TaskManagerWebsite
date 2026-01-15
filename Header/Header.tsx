@@ -2,23 +2,22 @@ import type { Profile } from "./type/Profile";
 import { useState } from "react";
 import profile_img from "./photo/profile_image.jpeg";
 import "./styles/Header.css";
-const Header:React.FC = () =>{
+type HeaderProps = {
+    isOpen: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
+    const toggleSidebar = () => {
+        setIsOpen(prev => !prev);
+    };
     const profile:Profile={
         name: "Ruslan",
         surname:"Opihaylenko",
         image: profile_img,
     };
-        const [isOpen, setIsOpen] = useState<boolean>(false);
-        const toggleSidebar = () =>{
-            setIsOpen(prev=>!prev);
-        };
     return( 
         <>
-        <div className={`layout ${isOpen ? "open" : ""}`}>
-        <div className="sidebar">
-            <h1 className="sidebar_top">Step Progers</h1>
-        </div>
-          <div className="content">
+       
         <form className="Header">
             <button type="button" onClick={toggleSidebar} className="dash_button"></button>
             <div className="dashboard"><b>Dashboard</b></div>
@@ -33,8 +32,7 @@ const Header:React.FC = () =>{
             <img className="profile_image" src={profile.image}/>
             </div>
         </form>
-        </div>
-        </div>
+
         </>
     );
 };

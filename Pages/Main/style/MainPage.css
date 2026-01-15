@@ -1,4 +1,31 @@
-.MainPage{
+.MainPage {
     height: 98vh;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 0 1fr;
+    transition: grid-template-columns 0.3s ease;
+}
+
+.MainPage.open {
+    grid-template-columns: 20% 1fr;
+}
+
+.sidebar {
+  overflow: hidden;
+  background: white;
+  color:#222;
+}
+
+.sidebar_top{
+    text-align: center;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: 8vh 1fr;
+}
+
+.MainPage_rest {
+    background-color: rgb(238, 232, 232);
+    overflow: auto;
+    border-radius: 15px;
 }
