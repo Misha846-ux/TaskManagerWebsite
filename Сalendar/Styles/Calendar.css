@@ -1,0 +1,16 @@
+.calendar{
+    height: 99%;
+    width: 20%;
+    background-color: white;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;   
+    align-items: center;      
+      
+}
+
+.weeksTable{
+    height: 95%;
+    width: 100%;
+    background-color: antiquewhite;
+}
