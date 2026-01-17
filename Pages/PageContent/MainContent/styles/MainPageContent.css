@@ -1,17 +1,21 @@
 .MainPage_rest {
     background-color: rgb(238, 232, 232);
-    overflow: auto;
+    height: 100%;
     border-radius: 15px;
 }
 .Calendar-YourProject{
     display: flex;
-    height: 21%;
-    width: 99%;
-    border: none;
+    margin: auto 0;
+    height: 18%;
+    width: 98%;
+    margin-top: 1%;
+    margin-left: 1%;
+    min-height: 150px;
 }
 .Fake_calendar{
+    justify-self:flex-start;
     height: 99%;
-    width: 25%;
+    width: 30%;
     background-color: white;
-    margin-left: 10%;
+  
 }

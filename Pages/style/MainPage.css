@@ -1,5 +1,5 @@
 .MainPage {
-    height: 98vh;
+    height: 100vh;
     display: grid;
     grid-template-columns: 0 1fr;
     transition: grid-template-columns 0.3s ease;
@@ -12,22 +12,7 @@
 .main {
     display: grid;
     grid-template-rows: 8vh 1fr;
+    grid-auto-rows: auto;
+    grid-auto-columns: auto;
 }
 
-.MainPage_rest {
-    background-color: rgb(238, 232, 232);
-    overflow: auto;
-    border-radius: 15px;
-}
-.Calendar-YourProject{
-    display: flex;
-    height: 21%;
-    width: 99%;
-    border: none;
-}
-.Fake_calendar{
-    height: 99%;
-    width: 25%;
-    background-color: white;
-    margin-left: 10%;
-}
