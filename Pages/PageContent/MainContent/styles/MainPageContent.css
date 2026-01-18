@@ -9,6 +9,18 @@
     width: 99%;
     border: none;
 }
+.calendarWorkBox{
+    height: 99%;
+    width: 20%;
+    margin-left: 10%;
+    display: flex;
+    
+}
+.BoxForCalendar{
+    height: 100%;
+    width: 70%;
+    
+}
 .Fake_calendar{
     height: 99%;
     width: 25%;
