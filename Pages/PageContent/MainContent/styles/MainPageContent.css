@@ -19,3 +19,10 @@
     background-color: white;
   
 }
+.Members-To_Do{
+    display: flex;
+    align-items: center;
+    height: 30%;
+    width: 98%;
+    margin: 1%;
+}
