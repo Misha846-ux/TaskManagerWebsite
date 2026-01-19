@@ -18,7 +18,7 @@ const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
     return( 
         <>
        
-        <div className="Header">
+        <form className="Header">
             <button type="button" onClick={toggleSidebar} className="dash_button"></button>
             <div className="dashboard"><b>Dashboard</b></div>
             <div className="search_box">
@@ -31,7 +31,7 @@ const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
             <div className="profile_name">{profile.surname}</div>
             <img className="profile_image" src={profile.image}/>
             </div>
-        </div>
+        </form>
 
         </>
     );
