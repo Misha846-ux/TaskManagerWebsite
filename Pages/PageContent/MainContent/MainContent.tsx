@@ -27,8 +27,6 @@ export default function MainContent() {
               </div>
               
             </div>
-            
-            
             <Outlet/>
             </div>
                 <Projects/>
