@@ -5,7 +5,10 @@ import { Outlet, useLoaderData } from 'react-router-dom';
 import Calendar from '../../../Сalendar/Calendar';
 import "./styles/MainPageContent.css"
 import TasksCard from '../../../Сalendar/TasksCard/TasksCard';
-
+import "./styles/MainPageContent.css"
+import Projects from '../../../Projects/Projects';
+import Members from '../../../Members/Members';
+import TO_DOES from '../../../TO_DOES/TO_DOES';
 export default function MainContent() {
 
   return (
@@ -27,7 +30,13 @@ export default function MainContent() {
             
             
             <Outlet/>
-        </div>
+            </div>
+                <Projects/>
+                <div className="Members-To_Do">
+                  <Members/>
+                  <TO_DOES/>
+                </div>
+                
     </div>
   )
 }
