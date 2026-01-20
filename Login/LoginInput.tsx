@@ -1,6 +1,7 @@
 import type { User } from "./types/User";
 import { useState } from "react";
 import "./styles/LoginInput.css"
+import { NavLink } from "react-router-dom";
 
 const LoginInput = () =>{
     const [user, setUser] = useState<User>({
@@ -41,7 +42,7 @@ const LoginInput = () =>{
             onChange={handleChange}
             required
             />
-            <button className="button" type="submit"><b>Sign In</b></button>
+            <NavLink to="/MainPage/MainContent" className="button">Login</NavLink>
         </form>
     );
 };

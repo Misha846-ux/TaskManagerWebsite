@@ -1,11 +1,9 @@
 import { createRoot } from 'react-dom/client'
-import LoginMain from './Login/LoginMain'
-import MainPage from './Pages/MainPage'
+import { RouterProvider } from 'react-router-dom'
 import "./mainBasicStyle.css"
+import { router } from './Router'
 
 createRoot(document.getElementById('root')!).render(
-  <>
-    {/* <LoginMain/> */}
-    <MainPage/>
-  </>
+  <RouterProvider router={router}></RouterProvider>
+  
 )

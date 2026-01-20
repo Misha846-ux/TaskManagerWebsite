@@ -61,8 +61,8 @@
   left: 102%;
   top: 50%;
   transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
+  width: 10%;
+  height: 90%;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -72,13 +72,15 @@
   background-position: center;
 }
 .profile_name{
-    margin: 15px;
-    margin-left: 18px;
+    margin: 12%;
     width: 15%;
     height: 15%;
+    font-size: clamp(0.6rem, 1rem, 1rem);
+    line-height: 1.2;
+    white-space: nowrap;
 }
 .profile_image{
-    margin-left: 60px;
+    margin-left: 90%;
     height: 100%;
     width: 100%;
     border-radius: 25px;

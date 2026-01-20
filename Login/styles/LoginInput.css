@@ -14,10 +14,17 @@
 }
 .button{
     background-color: rgb(241, 204, 134);
-    font-size: 150%;
+    font-size: 200%;
     width: 70%;
     border-radius: 10px;
     align-self: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    color: black;
 }
 .LoginInput{
     display: flex;
