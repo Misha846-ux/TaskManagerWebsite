@@ -7,13 +7,12 @@ export default function Sidebar() {
   const navigator = useNavigate()
   const OnClick = () => {
     localStorage.clear();
-    navigator("http://localhost:5173/");
+    navigator("/");
   }
 
   return (
     <div className="sidebar">
         <h1 className="sidebar_top">Step Progers</h1>
-        <NavLink to="MainContent"><button>MainPage</button></NavLink>
         <button onClick={OnClick}>LogOut</button>
     </div>
   )

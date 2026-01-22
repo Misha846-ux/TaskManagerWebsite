@@ -22,7 +22,7 @@ export default function MainContent() {
                 <Calendar/>
               </div>
               <div style={{width: "29%", height: "99%"}}>
-                <TasksCard title='COMPLETED TASKS' count={5}/>
+                <TasksCard title='COMPLETED TASKS' count={0.1}/>
                 <TasksCard title='PENDING TASKS' count={100}/>
               </div>
               
