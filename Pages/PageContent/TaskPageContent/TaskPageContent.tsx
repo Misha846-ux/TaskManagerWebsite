@@ -1,7 +1,7 @@
 import React from 'react'
 import Calendar from '../../../Сalendar/Calendar'
 import "./styles/TaskPageContent.css";
-import DateCell from '../../../Сalendar/DateCell';
+
 import TasksCard from '../../../Сalendar/TasksCard/TasksCard';
 import TaskCreatorComp from './components/TaskCreatorComp';
 import PlacerForTasksComp from './components/PlacerForTasksComp';
