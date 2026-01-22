@@ -6,6 +6,9 @@ import LoginMain from './Login/LoginMain'
 import TaskPageContent from './Pages/PageContent/TaskPageContent/TaskPageContent'
 import Error404 from './Errors/Error404'
 import Project_Worked from './Project_Worked/Project_Worked'
+import getTasks from './utils/getTasks'
+import TaskComponent from './Pages/PageContent/TaskPageContent/components/TaskComponent'
+import TaskFullInformationComp from './Pages/PageContent/TaskPageContent/components/TaskFullInformationComp'
 
 export const router = createBrowserRouter([
     {
@@ -27,9 +30,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: "TaskContent",
-                element: <TaskPageContent/>
-            }
+                element: <TaskPageContent/>,
+                loader: getTasks,
+            },
+            
         ]
+        
     },
     {
         path: "/",
@@ -38,5 +44,15 @@ export const router = createBrowserRouter([
     {
         path: "*",
         element: <Error404/>
-    }
+    },
+    {
+            path: "/task/:id",
+            element: <TaskFullInformationComp/>,
+            loader: async ({ params }) => {
+              const res = await fetch(
+                'http://localhost:3000/tasks/' + Number(params.id)
+              );
+              return res.json();
+            },
+     },
 ])

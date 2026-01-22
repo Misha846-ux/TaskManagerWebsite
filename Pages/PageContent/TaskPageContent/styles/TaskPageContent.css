@@ -1,3 +1,8 @@
+.Task_Page{
+  height: 70%;
+    width: 98%;
+    display: flex;
+}
 .TaskPageContent_CalendarDate{
     height: 98%;
     width: 30%;
@@ -33,3 +38,13 @@
     height: 50%;
     width: 40%;
 }
+.Task_Add{
+    height: 97%;
+    width: 70%;
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+

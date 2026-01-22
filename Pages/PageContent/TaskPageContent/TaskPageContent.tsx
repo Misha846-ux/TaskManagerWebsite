@@ -3,9 +3,13 @@ import Calendar from '../../../Сalendar/Calendar'
 import "./styles/TaskPageContent.css";
 import DateCell from '../../../Сalendar/DateCell';
 import TasksCard from '../../../Сalendar/TasksCard/TasksCard';
+import TaskCreatorComp from './components/TaskCreatorComp';
+import PlacerForTasksComp from './components/PlacerForTasksComp';
 
 export default function TaskPageContent() {
   return (
+    <>
+    <div className='Task_Page'>
     <div className='TaskPageContent_CalendarDate'>
     <div className='Task_Calendar'>
       <Calendar></Calendar>
@@ -19,5 +23,11 @@ export default function TaskPageContent() {
       </div>
     </div>
     </div>
-  )
-}
+    <div className='Task_Add'>
+    <TaskCreatorComp/>
+    <PlacerForTasksComp/>
+    </div>
+    </div>
+    </>
+);
+};
