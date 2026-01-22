@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import "../styles/Tasks.css";
 
 
 export default function TaskDetails() {

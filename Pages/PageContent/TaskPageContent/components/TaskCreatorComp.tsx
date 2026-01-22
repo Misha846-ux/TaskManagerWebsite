@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useRevalidator } from 'react-router-dom'
+import "../styles/Tasks.css";
 
 const SERVER_BASE = (import.meta as any).env?.VITE_URL_SERVER ?? 'http://localhost:3000'
 

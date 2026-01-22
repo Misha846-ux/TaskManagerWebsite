@@ -1,6 +1,7 @@
 import React, { use, useState } from 'react'
 import type { TaskType } from '../types/TaskType';
 import { NavLink, useLoaderData } from 'react-router-dom';
+import "../styles/Tasks.css";
 
 export default function TaskPageContent(obj: TaskType | undefined) {
   if(!obj){
