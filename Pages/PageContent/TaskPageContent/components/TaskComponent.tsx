@@ -3,7 +3,7 @@ import type { TaskType } from '../types/TaskType';
 import { NavLink, useLoaderData } from 'react-router-dom';
 import "../styles/Tasks.css";
 
-export default function TaskPageContent(obj: TaskType | undefined) {
+export default function TaskPageContent(obj: TaskType) {
   if(!obj){
     obj = useLoaderData() as TaskType;
   }
@@ -12,7 +12,7 @@ export default function TaskPageContent(obj: TaskType | undefined) {
   async function handleToggle(e: React.ChangeEvent<HTMLInputElement>) {
     setIsCompleted(e.target.checked);
     try {
-            const res = await fetch(`http://localhost:3000/tasks/${obj.id}`, {
+            const res = await fetch(import.meta.env.VITE_Tasks_SERVER_URL +`/${obj.id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ completed: e.target.checked }),

@@ -6,7 +6,10 @@ import LoginMain from './Login/LoginMain'
 import TaskPageContent from './Pages/PageContent/TaskPageContent/TaskPageContent'
 import Error404 from './Errors/Error404'
 import Project_Worked from './Project_Worked/Project_Worked'
-
+import getTasks from './utilities/getTasks'
+//npx json-server projectsDb.json
+//npx json-server usersDb.json --port 3001
+//npx json-server tasks-server.json --port 3002
 export const router = createBrowserRouter([
     {
         path: "/MainPage",
@@ -26,8 +29,12 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: "TaskContent",
-                element: <TaskPageContent/>
+                path: "TaskContent/:id",
+                element: <TaskPageContent/>,
+                hydrateFallbackElement: <div>Loading...</div>,
+                loader: async ({params}) => {
+                    return await getTasks(params.id as string)
+                }
             }
         ]
     },

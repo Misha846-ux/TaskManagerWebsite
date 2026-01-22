@@ -14,7 +14,7 @@ export default function TaskDetails() {
         setCompleted(next);
         setSaving(true);
         try {
-            const res = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+            const res = await fetch(import.meta.env.VITE_Tasks_SERVER_URL +`/${task.id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ completed: next }),

@@ -5,7 +5,7 @@ import { useLoaderData } from 'react-router-dom';
 import "../styles/Tasks.css";
 
 export default function PlacerForTasksComp() {
-  const tasksData = useLoaderData() as TaskType[] | undefined;
+  const tasksData = useLoaderData() as TaskType[];
 
   if (!tasksData) return null;
 

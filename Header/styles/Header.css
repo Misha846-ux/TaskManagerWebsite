@@ -41,6 +41,8 @@
     margin: 15px;
     margin-left: 30px;
     margin-right: 27%;
+    text-decoration: none;
+    color: black;
 }
 .search_box{
   position: relative;

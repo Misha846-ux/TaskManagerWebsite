@@ -27,7 +27,7 @@ const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
        
         <div className="Header">
             <button type="button" onClick={toggleSidebar} className="dash_button"></button>
-            <div className="dashboard"><b>Dashboard</b></div>
+            <NavLink to="/MainPage/MainContent" className="dashboard"><b>TaskWebSite</b></NavLink>
             <div className="search_box">
             <input className="search" placeholder="Search Project..." onChange={OnChange}/>
             <button className="search_button"></button>
