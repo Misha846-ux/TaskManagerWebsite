@@ -1,13 +1,28 @@
-import type { User } from "./types/User";
+
 import { useState } from "react";
 import "./styles/LoginInput.css"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { SearchUser } from "../utilities/GetUsersFunc";
+import type { UserType } from "../utilities/Types/UserType";
 
 const LoginInput = () =>{
-    const [user, setUser] = useState<User>({
-        login:"",
+    const [user, setUser] = useState<UserType>({
+        name:"",
         password:"",
     });
+    const navigator = useNavigate();
+    const OnClick = () => {
+        SearchUser(user).then((value) => {
+            if(value[0] == null){
+                alert("Un correct login or password");
+            }
+            else{
+                const userAsString = JSON.stringify(value[0]);
+                localStorage.setItem("user", userAsString);
+                navigator("/MainPage/MainContent")
+            }
+        })
+    }
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
         const {name, value} = e.target;
         setUser((prev)=>({
@@ -26,9 +41,9 @@ const LoginInput = () =>{
             <input
             className="input"
             type="text"
-            name="login"
+            name="name"
             placeholder="Write login friend"
-            value={user.login}
+            value={user.name}
             onChange={handleChange}
             required
             />
@@ -42,7 +57,7 @@ const LoginInput = () =>{
             onChange={handleChange}
             required
             />
-            <NavLink to="/MainPage/MainContent" className="button">Login</NavLink>
+            <button className="button" onClick={OnClick}>Login</button>
         </form>
     );
 };

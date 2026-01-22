@@ -6,7 +6,6 @@ const Projects = () =>{
     const [projects, SetProjects] = useState<ProjectType[]>([]);
         useEffect(()=>{
             GetProjects().then((value) => {
-                console.log(value);
                 SetProjects(value);
             })
         },[])  
@@ -15,7 +14,7 @@ const Projects = () =>{
             <div className="Projects_background">
                 <div className="Projects_top">Projects</div>
                 <div className="Project_content">
-                   {projects.map((item) => (<div className="TO_DOES_Project">
+                   {projects.map((item) => (<div className="TO_DOES_Project" key={item.title}>
                 <button className="TO_DOES_Project_button"></button>
                 <div className="TO_DOES_Project_name"><b>{item.title}</b></div>
                 <div className="TO_DOES_Project_percent">{Math.round((item.tasksDone / item.totalTasks) * 100)}%</div>

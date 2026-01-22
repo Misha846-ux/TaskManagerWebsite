@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, useNavigate } from 'react-router-dom'
 import MainPage from './Pages/MainPage'
 import MainContent from './Pages/PageContent/MainContent/MainContent'
 import LoginMain from './Login/LoginMain'
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "/",
-        element: <LoginMain/>
+        element: <LoginMain/>,
     },
     {
         path: "*",
