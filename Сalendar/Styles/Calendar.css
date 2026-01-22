@@ -42,5 +42,6 @@
     justify-content: center;
 }
 .headerCell, .dateCell {
-  font-size: clamp(10px, 2vw, 16px);
+  font-size: clamp(1px, 2vw, 100%);
+  
 }

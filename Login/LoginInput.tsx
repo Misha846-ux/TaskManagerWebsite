@@ -13,7 +13,7 @@ const LoginInput = () =>{
     const navigator = useNavigate();
     const OnClick = () => {
         SearchUser(user).then((value) => {
-            if(value[0] == null){
+            if(value[0] == null || user.name=="" || user.password == ""){
                 alert("Un correct login or password");
             }
             else{
