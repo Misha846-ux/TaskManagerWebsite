@@ -21,7 +21,7 @@ export default function MainContent() {
               <div className='BoxForCalendar'>
                 <Calendar/>
               </div>
-              <div style={{width: "29%", height: "99%"}}>
+              <div style={{width: "29%", height: "50%"}}>
                 <TasksCard title='COMPLETED TASKS' count={5}/>
                 <TasksCard title='PENDING TASKS' count={100}/>
               </div>
