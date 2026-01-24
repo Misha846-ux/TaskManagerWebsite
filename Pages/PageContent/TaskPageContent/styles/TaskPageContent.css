@@ -8,8 +8,9 @@
     width: 30%;
 }
 .Task_Calendar{
-    height: 60%; 
+    height: 30%; 
     width: 100%;
+    margin-top: 40%;
 }
 .Task_Cards{
     display: flex;
@@ -17,6 +18,7 @@
     height: 40%; 
     width: 100%;
     min-height: 350px;
+    margin-left: 15%;
 }
 .Card_CompletedTasks{
     display: flex;
@@ -25,7 +27,7 @@
     justify-content: center;   
     text-align: center;
     height: 50%;
-    width: 40%;
+    width: 30%;
     margin-right: 3%;
 }
 .Card_PendingTasks{
@@ -36,7 +38,7 @@
     text-align: center;
     margin-left: 1%;
     height: 50%;
-    width: 40%;
+    width: 30%;
 }
 .Task_Add{
     height: 97%;

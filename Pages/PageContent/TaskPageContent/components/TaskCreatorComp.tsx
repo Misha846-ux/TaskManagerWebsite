@@ -34,7 +34,7 @@ export default function TaskCreatorComp() {
 
     setSubmitting(true)
     try {
-      const url = `${SERVER_BASE.replace(/\/$/, '')}/tasks`
+      const url = `${SERVER_BASE.replace(/\/$/, '')}`
       const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
