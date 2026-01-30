@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useRevalidator } from 'react-router-dom'
+import "../styles/Tasks.css";
 
-const SERVER_BASE = (import.meta as any).env?.VITE_URL_SERVER ?? 'http://localhost:3000'
+const SERVER_BASE = import.meta.env.VITE_Tasks_SERVER_URL
 
 export default function TaskCreatorComp() {
   const revalidator = useRevalidator()

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import "../styles/Tasks.css";
 
 
 export default function TaskDetails() {
@@ -13,7 +14,7 @@ export default function TaskDetails() {
         setCompleted(next);
         setSaving(true);
         try {
-            const res = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+            const res = await fetch(import.meta.env.VITE_Tasks_SERVER_URL +`/${task.id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ completed: next }),
@@ -42,17 +43,6 @@ export default function TaskDetails() {
             <div>
                 <strong>Full Information:</strong>
                 <p>{task.fullInformation ?? task.description_full ?? "No details"}</p>
-            </div>
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={completed}
-                        onChange={toggleCompleted}
-                        disabled={saving}
-                    />{" "}
-                    Completed
-                </label>
             </div>
         </div>
     );

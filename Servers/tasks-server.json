@@ -8,7 +8,8 @@
       "isCompleted": false,
       "priority": "High",
       "dueDate": "2026-01-22",
-      "completed": true
+      "parantId": 1,
+      "completed": false
     },
     {
       "id": "2",
@@ -18,7 +19,7 @@
       "isCompleted": true,
       "priority": "Medium",
       "dueDate": "2026-01-18",
-      "completed": true
+      "parantId": 2
     },
     {
       "id": "3",
@@ -28,6 +29,7 @@
       "isCompleted": false,
       "priority": "High",
       "dueDate": "2026-01-28",
+      "parantId": 3,
       "completed": true
     },
     {
@@ -37,7 +39,8 @@
       "description_full": "Create task creation/edit form with client-side validation, priority selector, and due date picker integrated with state management.",
       "isCompleted": false,
       "priority": "Medium",
-      "dueDate": "2026-02-02"
+      "dueDate": "2026-02-02",
+      "parantId": 4
     },
     {
       "id": "5",
@@ -47,7 +50,8 @@
       "isCompleted": false,
       "priority": "Low",
       "dueDate": "2026-02-10",
-      "completed": false
+      "parantId": 1,
+      "completed": true
     },
     {
       "id": "6",
@@ -56,7 +60,38 @@
       "description_full": "Update README and API docs to reflect current endpoints, example requests/responses, and developer setup steps.",
       "isCompleted": true,
       "priority": "Low",
-      "dueDate": "2026-01-20"
+      "dueDate": "2026-01-20",
+      "parantId": 3
+    },
+    {
+      "id": "7",
+      "title": "Code review and refactoring",
+      "description_short": "Review codebase",
+      "description_full": "Conduct code review sessions, identify areas for refactoring, improve code readability, and optimize performance where necessary.",
+      "isCompleted": false,
+      "priority": "Medium",
+      "dueDate": "2026-02-15",
+      "parantId": 2
+    },
+    {
+      "id": "8",
+      "title": "Deploy to staging",
+      "description_short": "Set up staging environment",
+      "description_full": "Configure and deploy the application to a staging environment for further testing and stakeholder review.",
+      "isCompleted": false,
+      "priority": "High",
+      "dueDate": "2026-02-05",
+      "parantId": 4
+    },
+    {
+      "id": "9",
+      "title": "User feedback collection",
+      "description_short": "Gather feedback",
+      "description_full": "Set up mechanisms to collect user feedback on the task management features, including surveys and direct interviews.",
+      "isCompleted": false,
+      "priority": "Low",
+      "dueDate": "2026-02-20",
+      "parantId": 1
     }
   ]
 }
