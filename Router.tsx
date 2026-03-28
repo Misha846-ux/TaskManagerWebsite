@@ -7,6 +7,8 @@ import TaskPageContent from './Pages/PageContent/TaskPageContent/TaskPageContent
 import Error404 from './Errors/Error404'
 import Project_Worked from './Project_Worked/Project_Worked'
 import getTasks from './utilities/getTasks'
+import LoginIn from './Login/LoginIn'
+import ForgotPassword from './Login/ForgotPassword'
 //npx json-server projectsDb.json
 //npx json-server usersDb.json --port 3001
 //npx json-server tasks-server.json --port 3002
@@ -41,6 +43,14 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <LoginMain/>,
+    },
+    {
+        path:"/LoginIn",
+        element:<LoginIn/>,
+    },
+    {
+        path: "/ForgotPassword",
+        element: <ForgotPassword/>
     },
     {
         path: "*",
