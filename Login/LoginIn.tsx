@@ -11,18 +11,31 @@ const LoginIn = () =>{
              email:"",
          });
          const navigator = useNavigate();
-         const OnClick = () => {
-             SearchUser(user).then((value) => {
-                 if(value[0] == null || user.name=="" || user.password == "" || user.email== ""){
-                     alert("Un correct login or password or email");
-                 }
-                 else{
-                     const userAsString = JSON.stringify(value[0]);
-                     localStorage.setItem("user", userAsString);
-                     navigator("/MainPage/MainContent")
-                 }
-             })
-         }
+        const OnClick = async () => {
+    if (!user.name || !user.password || !user.email) {
+        alert("Fill all fields");
+        return;
+    }
+
+    try {
+        const response = await fetch("https://localhost:7199/LogIn", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include", 
+            body: JSON.stringify(user),
+        });
+
+        if (!response.ok) {
+            throw new Error("Login failed");
+        }
+
+        navigator("/MainPage/MainContent");
+    } catch (error) {
+        alert("Incorrect login or password");
+    }
+};
          const handleChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
              const {name, value} = e.target;
              setUser((prev)=>({
@@ -34,10 +47,13 @@ const LoginIn = () =>{
              e.preventDefault();
              console.log(user);
          };
+          const OnClickBack= () => {
+                navigator("/")
+        }
 
   return (
     <div className="LoginIn_body">
-     <form className="Login_Input" onSubmit={handleSubmit}>
+     <form className="Login_Input" onSubmit={OnClick}>
             <h1 className="top">Login In</h1>
             <label className="lable">Login</label>
             <input
@@ -62,14 +78,15 @@ const LoginIn = () =>{
             <label className="lable">Password</label>
             <input
             className="input"
-            type="text"
+            type="password"
             name="password"
             placeholder="Write password friend"
             value={user.password}
             onChange={handleChange}
             required
             />
-            <button className="button" onClick={OnClick}>Log in</button>
+            <button className="button" type="submit">Log in</button>
+            <button className="Back_button" onClick={OnClickBack}>Back</button>
         </form>
         </div>
   );

@@ -31,11 +31,6 @@
     object-fit: contain;
     background-color: white;
 }
-.dash_img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 .dashboard{
     font-size: 20px;
     margin: 15px;

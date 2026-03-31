@@ -7,3 +7,17 @@
 .sidebar_top{
     text-align: center;
 }
+.Logo_img{
+  height: 15%;
+  width: 40%;
+  object-fit: cover;
+  margin-left: 5%;
+}
+.LogOut_button{
+  width: 50%;
+  height: 5%;
+  margin-left: 10%;
+  border-radius: 15%;
+  background-color: rgb(180, 175, 175);
+  font-size: 100%;
+}

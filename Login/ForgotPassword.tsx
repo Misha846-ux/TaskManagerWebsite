@@ -58,6 +58,9 @@ const ForgotPassword = () => {
       alert("Wire Error");
     }
   };
+  const OnClickBack= () => {
+                navigate("/")
+        }
 
   return (
     <div className="ForgotPassword_body">
@@ -78,6 +81,7 @@ const ForgotPassword = () => {
           <button className="GetToken_button" onClick={handleGetToken}>
             Get Token
           </button>
+           <button className="Back_button" onClick={OnClickBack}>Back</button>
         </>
       )}
 
@@ -95,6 +99,7 @@ const ForgotPassword = () => {
           <button className="WriteToken_button" onClick={handleLoginWithToken}>
            Log in with Token
           </button>
+           <button className="Back_button" onClick={OnClickBack}>Back</button>
         </>
       )}
       </div>
