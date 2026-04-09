@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./styles/Projects.css";
-import { GetProjects } from "../utilities/GetProjectsFunc";
+import { GetProjects } from "../utilities/Methods/GetProjectsFunc";
 import type { ProjectType } from "../utilities/Types/ProjectType";
 import { useSelector, type TypedUseSelectorHook } from "react-redux";
 import type { RootState } from "../redux/store";

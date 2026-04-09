@@ -1,59 +1,59 @@
 import { useState } from "react";
 import "./styles/LoginIn.css"
-import { NavLink, useNavigate } from "react-router-dom";
-import { SearchUser } from "../utilities/GetUsersFunc";
-import type { UserType } from "../utilities/Types/UserType";
+import { useNavigate } from "react-router-dom";
+import { login } from "../utilities/Methods/UsersMethods";
 
-const LoginIn = () =>{
-      const [user, setUser] = useState<UserType>({
-             name:"",
-             password:"",
-             email:"",
-         });
-         const navigator = useNavigate();
-        const OnClick = async () => {
-    if (!user.name || !user.password || !user.email) {
-        alert("Fill all fields");
-        return;
-    }
+type LoginType = {
+    name: string;
+    email:string;
+    password: string;
+};
 
-    try {
-        const response = await fetch("https://localhost:7199/LogIn", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: "include", 
-            body: JSON.stringify(user),
-        });
+const LoginIn = () => {
+    const [user, setUser] = useState<LoginType>({
+        name: "",
+        password: "",
+        email: "",
+    });
 
-        if (!response.ok) {
-            throw new Error("Login failed");
+    const navigator = useNavigate();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!user.name || !user.password || !user.email) {
+            alert("Fill all fields");
+            return;
         }
 
-        navigator("/MainPage/MainContent");
-    } catch (error) {
-        alert("Incorrect login or password");
-    }
-};
-         const handleChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
-             const {name, value} = e.target;
-             setUser((prev)=>({
-                 ...prev,
-                 [name]:value,
-             }));
-         };
-         const handleSubmit = (e:React.FormEvent) =>{
-             e.preventDefault();
-             console.log(user);
-         };
-          const OnClickBack= () => {
+        try {
+            const response = await login(user);
+
+            if (!response.ok) {
+                throw new Error();
+            }
+
+            localStorage.setItem("isAuth", "true");
+            localStorage.setItem("user", JSON.stringify(user));
+            navigator("/MainPage/MainContent");
+        } catch {
+            alert("Incorrect login or password or email");
+        }
+    };
+     const OnClickBack= () => {
                 navigator("/")
         }
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUser((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
   return (
     <div className="LoginIn_body">
-     <form className="Login_Input" onSubmit={OnClick}>
+     <form className="Login_Input" onSubmit={handleSubmit}>
             <h1 className="top">Login In</h1>
             <label className="lable">Login</label>
             <input
@@ -65,7 +65,7 @@ const LoginIn = () =>{
             onChange={handleChange}
             required
             />
-             <label className="lable">Email</label>
+            <label className="lable">Email</label>
             <input
             className="input"
             type="text"

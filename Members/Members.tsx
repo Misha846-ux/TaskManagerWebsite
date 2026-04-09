@@ -1,7 +1,7 @@
 import "./styles/Members.css";
 import profile_img from "../Header/photo/profile_image.jpeg";
 import { useEffect, useState } from "react";
-import { GetUsers } from "../utilities/GetUsersFunc";
+import { GetUsers } from "../utilities/Methods/UsersMethods";
 import type { UserType } from "../utilities/Types/UserType";
 const Members = () => {
     const [users, setUsers] = useState<UserType[]>([]);

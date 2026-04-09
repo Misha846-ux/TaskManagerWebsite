@@ -5,10 +5,13 @@ import { useEffect } from "react";
 const LoginMain = () =>{
     const navigator = useNavigate()
     useEffect(() => {
-        if(localStorage.getItem("user") != null){
-            navigator("/MainPage/MainContent")
+    try {
+        const user = JSON.parse(localStorage.getItem("user") || "null");
+        if (user) {
+            navigator("/MainPage/MainContent");
         }
-    },[])
+    } catch {}
+}, []);
 
     return(
         <div className="LoginMain">

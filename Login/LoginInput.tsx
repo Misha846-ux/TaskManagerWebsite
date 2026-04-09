@@ -1,8 +1,8 @@
 
 import { useState } from "react";
 import "./styles/LoginInput.css"
-import { NavLink, useNavigate } from "react-router-dom";
-import { SearchUser } from "../utilities/GetUsersFunc";
+import { useNavigate } from "react-router-dom";
+import { signUp } from "../utilities/Methods/UsersMethods";
 import type { UserType } from "../utilities/Types/UserType";
 
 const LoginInput = () =>{
@@ -12,18 +12,22 @@ const LoginInput = () =>{
         email:"",
     });
     const navigator = useNavigate();
-    const OnClick = () => {
-        SearchUser(user).then((value) => {
-            if(value[0] == null || user.name=="" || user.password == "" || user.email== ""){
-                alert("Un correct login or password or email");
-            }
-            else{
-                const userAsString = JSON.stringify(value[0]);
-                localStorage.setItem("user", userAsString);
-                navigator("/MainPage/MainContent")
-            }
-        })
+    const OnClick = async () => {
+    if (!user.name || !user.email || !user.password) {
+        alert("Fill all fields");
+        return;
     }
+
+    const response = await signUp(user);
+
+    if (response.ok) {
+        alert("Account created!");
+        localStorage.setItem("user", JSON.stringify(user));
+        navigator("/LoginIn");
+    } else {
+        alert("Error");
+    }
+    };
     const OnClickLoginIn = () => {
                 navigator("/LoginIn")
     }

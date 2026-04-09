@@ -19,7 +19,8 @@ const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
         const str = e.target.value;
         dispatch(setQuery(str));
     }
-    const profile:UserType= JSON.parse(localStorage.getItem("user") as string)
+    const profileString = localStorage.getItem("user");
+    const profile: UserType | null = profileString ? JSON.parse(profileString) : null;
 
 
     return( 
@@ -34,7 +35,7 @@ const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
             </div>
             <button className="message_button"></button>
             <div className="profile">
-            <div className="profile_name">{profile.name}</div>
+            <div className="profile_name">{profile?.name || "Guest"}</div>
             <img className="profile_image" src={profile_img}/>
             </div>
         </div>
