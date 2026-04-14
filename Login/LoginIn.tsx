@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./styles/LoginIn.css"
 import { useNavigate } from "react-router-dom";
 import { login } from "../utilities/Methods/UsersMethods";
+const API_URL = import.meta.env.VITE_API_URL;
 
 type LoginType = {
     name: string;
@@ -33,9 +34,31 @@ const LoginIn = () => {
                 throw new Error();
             }
 
+            const companiesResponse = await fetch(`${API_URL}/Authorization/MyCompanies`,{
+                credentials: "include"
+            });
+
+            const companies = await companiesResponse.json();
+
+            if(!companies.length){
+                alert("No companies");
+                return;
+            }
+
+            const firstCompany = companies[0];
+
+            const tokenResponse = await fetch(`${API_URL}/Authorization/Refresh?companyId=${firstCompany.id}`,{
+                method:"POST",
+                credentials: "include"
+            });
+
+            const accessToken = await tokenResponse.text();
+
             localStorage.setItem("isAuth", "true");
-            localStorage.setItem("user", JSON.stringify(user));
-            navigator("/MainPage/MainContent");
+            
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("companyId", firstCompany.id);
+            navigator(`${API_URL}/MainPage/MainContent/company/${firstCompany.id}`);
         } catch {
             alert("Incorrect login or password or email");
         }

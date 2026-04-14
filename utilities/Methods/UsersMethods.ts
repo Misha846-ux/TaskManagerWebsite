@@ -44,8 +44,10 @@ export async function login(user: {
 
 export async function GetUsers(){
     const response = await fetch(`${API_URL}/User`, {
-        credentials: "include"
-    });
+    headers: {
+    Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+  }
+});
 
     if (!response.ok) {
         throw new Error("Unauthorized");

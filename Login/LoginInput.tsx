@@ -22,7 +22,7 @@ const LoginInput = () =>{
 
     if (response.ok) {
         alert("Account created!");
-        localStorage.setItem("user", JSON.stringify(user));
+        
         navigator("/LoginIn");
     } else {
         alert("Error");
