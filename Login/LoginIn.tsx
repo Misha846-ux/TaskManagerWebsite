@@ -35,11 +35,15 @@ const LoginIn = () => {
             }
 
             const companiesResponse = await fetch(`${API_URL}/Authorization/MyCompanies`,{
+                method: "GET",
                 credentials: "include"
             });
 
             const companies = await companiesResponse.json();
 
+            if(!companiesResponse.ok){
+                throw new Error("Failed to get companies");
+            }
             if(!companies.length){
                 alert("No companies");
                 return;
@@ -56,11 +60,13 @@ const LoginIn = () => {
 
             localStorage.setItem("isAuth", "true");
             
-            localStorage.setItem("accessToken", accessToken);
-            localStorage.setItem("companyId", firstCompany.id);
-            navigator(`${API_URL}/MainPage/MainContent/company/${firstCompany.id}`);
+            localStorage.setItem("accessToken", accessToken.toString());
+            localStorage.setItem("companyId", firstCompany.id.toString());
+
+            navigator(`/MainPage/MainContent/company/${firstCompany.id}`);
         } catch {
             alert("Incorrect login or password or email");
+            console.log(document.cookie)
         }
     };
      const OnClickBack= () => {
