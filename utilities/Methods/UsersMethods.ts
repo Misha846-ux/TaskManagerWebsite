@@ -11,10 +11,10 @@ export async function signUp(user: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            userName: user.name,
-            email: user.email,
-            password: user.password,
-            settings: ""
+            UserName: user.name,
+            Email: user.email,
+            Password: user.password,
+            Settings: ""
         }),
     });
 
