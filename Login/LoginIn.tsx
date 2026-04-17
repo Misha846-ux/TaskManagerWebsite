@@ -57,12 +57,17 @@ const LoginIn = () => {
             });
 
             const accessToken = await tokenResponse.text();
-
+            if (!accessToken) {
+                throw new Error("No token");
+            }
             localStorage.setItem("isAuth", "true");
-            
             localStorage.setItem("accessToken", accessToken.toString());
             localStorage.setItem("companyId", firstCompany.id.toString());
-
+            localStorage.setItem("user", JSON.stringify({
+                userName: user.name,
+                email: user.email
+            }));
+        
             navigator(`/MainPage/MainContent/company/${firstCompany.id}`);
         } catch {
             alert("Incorrect login or password or email");

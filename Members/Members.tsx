@@ -7,10 +7,14 @@ const Members = () => {
     const [users, setUsers] = useState<UserType[]>([]);
 
     useEffect(()=>{
-        GetUsers().then((value) =>{
-            setUsers(value);
+        GetUsers().then((value) => {
+            setUsers(Array.isArray(value) ? value : []);
         })
+        .catch(() => {
+            setUsers([]);
+        });
     },[])
+    console.log(users);
     
     return(
         <div className="Mambers_background">
@@ -20,12 +24,15 @@ const Members = () => {
                 <div>Member Info</div>
                 </div>
                 <div className="Scroll_content">
-                    {users.map((user) => (
-                        <div className="Members_profile" key={user.name}>
+                    {!users.length ? (
+                        <div className="No_users"><b>No users</b></div>
+                    ) : (
+                    users.map((user) => (
+                        <div className="Members_profile" key={user.id}>
                         <img className="Members_profile_image" src={profile_img}/>
-                        <div className="Members_profile_name">{user.name}</div>
+                        <div className="Members_profile_name">{user.userName}</div>
                         </div>
-                    ))}
+                    )))}
                 
                 </div>
             </div>

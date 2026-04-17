@@ -9,36 +9,43 @@ import Project_Worked from './Project_Worked/Project_Worked'
 import getTasks from './utilities/Methods/getTasks'
 import LoginIn from './Login/LoginIn'
 import ForgotPassword from './Login/ForgotPassword'
+import ProtectedRoute from './Protected_Router'
 //npx json-server projectsDb.json
 //npx json-server usersDb.json --port 3001
 //npx json-server tasks-server.json --port 3002
 export const router = createBrowserRouter([
     {
-        path: "/MainPage",
-        element: <MainPage />,
+        element:<ProtectedRoute/>,
         children: [
             {
-                path: "MainContent",
-                element: <MainContent/>,
-                children: [
+            path: "/MainPage",
+            element: <MainPage />,
+            children: [
+                {
+                    path: "MainContent/",
+                    element: <MainContent/>,
+                    children: [
                     {
-                        path: "",
+                        path: "company/:companyId",
                         element: <Project_Worked/>,
                     },
                     {
-                        path: ""
+                        path: "",
+                        element: <Project_Worked/>,
                     }
-                ]
-            },
-            {
+                    ]
+                },
+                {
                 path: "TaskContent/:id",
                 element: <TaskPageContent/>,
                 hydrateFallbackElement: <div>Loading...</div>,
                 loader: async ({params}) => {
                     return await getTasks(params.id as string)
                 }
-            }
-        ]
+                }
+            ]
+        }
+    ]
     },
     {
         path: "/",

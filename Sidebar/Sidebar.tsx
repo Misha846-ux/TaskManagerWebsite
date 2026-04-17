@@ -17,8 +17,18 @@ useEffect(() => {
     method:"GET",
     credentials: "include"
   })
-  .then(res => res.json())
-  .then(setCompanies);
+   .then(res => {
+    if (!res.ok) {
+      throw new Error("Unauthorized");
+    }
+    return res.json();
+  })
+  .then(data => {
+    setCompanies(data);
+  })
+  .catch(() => {
+    setCompanies([]); 
+  });
 }, []);
 
 const handleCompanyClick = async (companyId: number) => {
@@ -48,19 +58,22 @@ const handleCompanyClick = async (companyId: number) => {
         <h1 className="sidebar_top">Your Companies</h1>
         <button className='Company_create_button'>Create +</button>
         <div className='Companies_list'>
-          {companies.map(company=>(
-            <div key={company.id} className='Company' onClick={() => handleCompanyClick(company.id)}>
+          {!companies.length ?(
+            <div className='No_companies'><b>No companies</b></div>
+          ):(
+          companies.map(company=>(
+            <div key={company.id} className='Company'>
               <div className='Company_top'>Company name</div>
               <div className='Company_profile'>
               <div className='Company_name'>
                 <b>{company.name}</b>
                 </div>
-                <div className='Company_img'>
+                <div className='Company_img' onClick={() => handleCompanyClick(company.id)}>
                   <img className='comp_img' src={comp_img}></img>
                 </div>
                 </div>
               </div>
-          ))}
+          )))}
         </div>
         <button className='LogOut_button' onClick={OnClick}><b>LogOut</b></button>
     </div>

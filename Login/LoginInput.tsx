@@ -7,18 +7,23 @@ import type { UserType } from "../utilities/Types/UserType";
 
 const LoginInput = () =>{
     const [user, setUser] = useState<UserType>({
-        name:"",
+        id:0,
+        userName:"",
         password:"",
         email:"",
     });
     const navigator = useNavigate();
     const OnClick = async () => {
-    if (!user.name || !user.email || !user.password) {
+    if (!user.userName || !user.email || !user.password) {
         alert("Fill all fields");
         return;
     }
 
-    const response = await signUp(user);
+    const response = await signUp({
+        name: user.userName,
+        email: user.email,
+        password: user.password
+        });
 
     if (response.ok) {
         alert("Account created!");
@@ -52,9 +57,9 @@ const LoginInput = () =>{
             <input
             className="input"
             type="text"
-            name="name"
+            name="userName"
             placeholder="Write login friend"
-            value={user.name}
+            value={user.userName}
             onChange={handleChange}
             required
             />

@@ -35,7 +35,7 @@ const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
             </div>
             <button className="message_button"></button>
             <div className="profile">
-            <div className="profile_name">{profile?.name || "Guest"}</div>
+            <div className="profile_name">{profile?.userName || "Guest"}</div>
             <img className="profile_image" src={profile_img}/>
             </div>
         </div>
