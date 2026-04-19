@@ -49,6 +49,51 @@ const handleCompanyClick = async (companyId: number) => {
     localStorage.clear();
     navigator("/");
   }
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+
+  const [newCompany, setNewCompany] = useState({
+  name: "",
+  description: ""
+});
+
+const handleOnChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
+  const {name, value} = e.target;
+
+  setNewCompany(prev =>({
+    ...prev,
+    [name]:value
+  }));
+};
+const onHandleSubmit = async (e:React.FormEvent) =>{
+  e.preventDefault();
+
+  const token = localStorage.getItem("accessToken");
+  
+  const response = await fetch(`${API_URL}/Company/AddCompany`, {
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      Authorization:`Bearer ${token}`
+    },
+    body: JSON.stringify(newCompany)
+  });
+
+  if(!response.ok){
+    console.error("Created error");
+    return;
+  }
+
+  const createdCompany = await response.json();
+
+  setCompanies(prev=>[...prev,createdCompany]);
+
+  setIsCreateOpen(false);
+
+  setNewCompany({
+    name: "",
+    description: ""
+  });
+};
 
   return (
     <div className="sidebar">
@@ -56,7 +101,38 @@ const handleCompanyClick = async (companyId: number) => {
         <img className='Logo_img' src={logo_img}/>
       </div>
         <h1 className="sidebar_top">Your Companies</h1>
-        <button className='Company_create_button'>Create +</button>
+        <button className='Company_create_button' onClick={()=>setIsCreateOpen(true)}>Create +</button>
+        {isCreateOpen &&(
+          <form className='create_box' onMouseLeave={()=>setIsCreateOpen(false)}  onSubmit={onHandleSubmit}>
+            <div className='company_create_context'>
+              <div className='company_insert'>
+                <label className='company_top'><b>Company name</b></label>
+                <input
+                className='company_input'
+                type="text"
+                name="name"
+                placeholder="Write name friend"
+                value={newCompany.name}
+                onChange={handleOnChange}
+                required
+            />
+              </div>
+              <div className='company_insert'>
+                <label className='company_top'><b>Description</b></label>
+                <input
+                className='company_input'
+                type="text"
+                name="description"
+                placeholder="Write description friend"
+                value={newCompany.description}
+                onChange={handleOnChange}
+                required
+                />
+              </div>
+            </div>
+            <button className='company_create' type='submit'>Create</button>
+          </form>
+        )}
         <div className='Companies_list'>
           {!companies.length ?(
             <div className='No_companies'><b>No companies</b></div>

@@ -3,8 +3,16 @@ import profile_img from "../Header/photo/profile_image.jpeg";
 import { useEffect, useState } from "react";
 import { GetUsers } from "../utilities/Methods/UsersMethods";
 import type { UserType } from "../utilities/Types/UserType";
+import { useNavigate } from 'react-router-dom'
 const Members = () => {
     const [users, setUsers] = useState<UserType[]>([]);
+
+    const navigator = useNavigate();
+
+    const OnClick = () => {
+    localStorage.clear();
+    navigator("/");
+    }
 
     useEffect(()=>{
         GetUsers().then((value) => {
@@ -13,12 +21,10 @@ const Members = () => {
         .catch(() => {
             setUsers([]);
         });
-    },[])
-    console.log(users);
-    
+    },[]);
     return(
         <div className="Mambers_background">
-            <div className="Members_top">Members</div>
+            <div className="Members_top">Members <button onClick={OnClick} className='User_create_button'>Create +</button></div>
             <div className="Members_content">
                 <div className="Scroll_top">
                 <div>Member Info</div>
