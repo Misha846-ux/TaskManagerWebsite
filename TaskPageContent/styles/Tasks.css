@@ -8,7 +8,7 @@
   flex-wrap: wrap;
   gap: 12px;                       /* horizontal & vertical gap */
   padding: 12px;
-  max-height: 62vh;                /* show vertical scrollbar when needed */
+  max-height: 85vh;                /* show vertical scrollbar when needed */
   overflow-y: auto;
   align-items: flex-start;
   justify-content: flex-start;

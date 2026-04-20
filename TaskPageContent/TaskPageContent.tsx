@@ -1,12 +1,18 @@
-import React from 'react'
-import Calendar from '../../../Сalendar/Calendar'
+import React, { Fragment } from 'react'
+import Calendar from '../Сalendar/Calendar'
 import "./styles/TaskPageContent.css";
 
-import TasksCard from '../../../Сalendar/TasksCard/TasksCard';
+import TasksCard from '../Сalendar/TasksCard/TasksCard';
 import TaskCreatorComp from './components/TaskCreatorComp';
 import PlacerForTasksComp from './components/PlacerForTasksComp';
+import Modal from './components/TestModal';
 
 export default function TaskPageContent() {
+  const [open, setOpen] = React.useState(false);
+
+  const closeModal = () => {
+    setOpen(!open);
+  };
   return (
     <>
     <div className='Task_Page'>
@@ -23,9 +29,12 @@ export default function TaskPageContent() {
       </div>
     </div>
     </div>
-    <div className='Task_Add'>
-    <TaskCreatorComp/>
-    </div>
+    <Fragment>
+    <button onClick={() => setOpen(!open)} style={{ width: "100px", height: "40px", fontSize: "16px", cursor: "pointer" }}>
+      Create Task
+    </button>
+    <Modal open={open} closeModal={closeModal} ></Modal>
+    </Fragment>
     <div><PlacerForTasksComp/></div>
     </div>
     </>

@@ -3,11 +3,11 @@ import { createBrowserRouter, useNavigate } from 'react-router-dom'
 import MainPage from './Pages/MainPage'
 import MainContent from './Pages/PageContent/MainContent/MainContent'
 import LoginMain from './Login/LoginMain'
-import TaskPageContent from './Pages/PageContent/TaskPageContent/TaskPageContent'
+import TaskPageContent from './TaskPageContent/TaskPageContent'
 import Error404 from './Errors/Error404'
 import Project_Worked from './Project_Worked/Project_Worked'
 import getTasks from './utilities/getTasks'
-import TaskDetails from './Pages/PageContent/TaskPageContent/components/TaskFullInformationComp' 
+import TaskDetails from './TaskPageContent/components/TaskFullInformationComp' 
 //npx json-server projectsDb.json
 //npx json-server usersDb.json --port 3001
 //npx json-server tasks-server.json --port 3002
