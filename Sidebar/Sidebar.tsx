@@ -1,12 +1,5 @@
 import React from 'react'
 import "./styles/Sidebar.css"
-<<<<<<< HEAD
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-
-
-export default function Sidebar() {
-  const navigator = useNavigate()
-=======
 import logo_img from "./photos/logo.png";
 import comp_img from "./photos/company_img.png"
 import { useNavigate } from 'react-router-dom'
@@ -52,22 +45,10 @@ const handleCompanyClick = async (companyId: number) => {
    navigator(`/MainPage/MainContent/company/${companyId}`);
 };
 
->>>>>>> d10d65af7a3d73ed28e2df4ae2489846115ffa46
   const OnClick = () => {
     localStorage.clear();
     navigator("/");
   }
-<<<<<<< HEAD
-  const OnClickTasks = () => {
-    navigator("TaskContent");
-  }
-
-  return (
-    <div className="sidebar">
-        <h1 className="sidebar_top">Step Progers</h1>
-        <button onClick={OnClick}>LogOut</button>
-        <button onClick={OnClickTasks}>TaskPage</button>
-=======
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   const [newCompany, setNewCompany] = useState({
@@ -171,7 +152,6 @@ const onHandleSubmit = async (e:React.FormEvent) =>{
           )))}
         </div>
         <button className='LogOut_button' onClick={OnClick}><b>LogOut</b></button>
->>>>>>> d10d65af7a3d73ed28e2df4ae2489846115ffa46
     </div>
   )
 }

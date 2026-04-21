@@ -1,31 +1,10 @@
 import { useEffect, useState } from "react";
 import "./styles/Projects.css";
-<<<<<<< HEAD
-import { GetProjects } from "../utilities/GetProjectsFunc";
-=======
 import { GetProjects } from "../utilities/Methods/ProjectMethods";
->>>>>>> d10d65af7a3d73ed28e2df4ae2489846115ffa46
 import type { ProjectType } from "../utilities/Types/ProjectType";
 import { useSelector, type TypedUseSelectorHook } from "react-redux";
 import type { RootState } from "../redux/store";
 import { NavLink } from "react-router-dom";
-<<<<<<< HEAD
-const Projects = () =>{
-    const [projects, SetProjects] = useState<ProjectType[]>([]);
-    const query = useSelector((state: RootState) => state.search.query)
-        useEffect(()=>{
-            GetProjects().then((value) => {
-                SetProjects(value);
-                
-            })
-        },[])
-    return (
-        <div className="Projects">
-            <div className="Projects_background">
-                <div className="Projects_top">Projects</div>
-                <div className="Project_content">
-                   {projects.filter((item) => {
-=======
 const API_URL = import.meta.env.VITE_API_URL;
 const Projects = () =>{
     const [projects, SetProjects] = useState<ProjectType[]>([]);
@@ -115,7 +94,6 @@ const Projects = () =>{
                         <div className="No_projects"><b>No projects</b></div>
                     ) :(
                    projects.filter((item) => {
->>>>>>> d10d65af7a3d73ed28e2df4ae2489846115ffa46
                     if(query == ""){
                         return true;
                     }
@@ -130,11 +108,7 @@ const Projects = () =>{
                 <div className="TO_DOES_Project_percent_background_line">
                     <div className="TO_DOES_Project_percent_line" style={{"--percent": `${Math.round((item.tasksDone / item.totalTasks) * 100)}%`} as React.CSSProperties}></div>
                 </div>
-<<<<<<< HEAD
-            </NavLink>))}
-=======
             </NavLink>)))}
->>>>>>> d10d65af7a3d73ed28e2df4ae2489846115ffa46
                 </div>
             </div>
         </div>
