@@ -12,6 +12,7 @@ import Sidebar from "../Sidebar/Sidebar";
 
 const MainPage: React.FC = () =>{
     const [isOpen, setIsOpen] = useState(false);
+    
     return(
         <div className={`MainPage ${isOpen ? "open" : ""}`}>
             <Sidebar/>

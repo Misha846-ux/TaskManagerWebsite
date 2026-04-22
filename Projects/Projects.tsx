@@ -5,10 +5,13 @@ import type { ProjectType } from "../utilities/Types/ProjectType";
 import { useSelector, type TypedUseSelectorHook } from "react-redux";
 import type { RootState } from "../redux/store";
 import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 const API_URL = import.meta.env.VITE_API_URL;
 const Projects = () =>{
     const [projects, SetProjects] = useState<ProjectType[]>([]);
     const query = useSelector((state: RootState) => state.search.query);
+    const { companyId } = useParams();
         useEffect(()=>{
                 GetProjects().then((value) => {
                     SetProjects(Array.isArray(value) ? value : []);
@@ -16,7 +19,7 @@ const Projects = () =>{
                 .catch(() => {
                     SetProjects([]);
                 });
-            },[]);
+            },[companyId]);
     const [isCreateOpen, setIsCreateOpen] = useState(false);
 
     const [newProject, setNewProject] = useState({
