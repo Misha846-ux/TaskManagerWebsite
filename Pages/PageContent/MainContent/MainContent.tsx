@@ -12,41 +12,8 @@ import TO_DOES from '../../../TO_DOES/TO_DOES';
 import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 export default function MainContent() {
- const [companies, setCompanies] = useState<any[]>([]);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    fetch(`${API_URL}/Authorization/MyCompanies`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-      }
-    })
-      .then(res => {
-        if (!res.ok) throw new Error();
-        return res.json();
-      })
-      .then(data => setCompanies(data))
-      .catch(() => setCompanies([]));
-  }, []);
-
-  useEffect(() => {
-    if (companies.length > 0 && !location.pathname.includes("company")) {
-
-      const savedCompanyId = localStorage.getItem("companyId");
-
-      const companyId = savedCompanyId
-        ? savedCompanyId
-        : companies[0].id;
-
-      navigate(`/MainPage/MainContent/company/${companyId}`);
-    }
-  }, [companies, location.pathname]);
+ 
   return (
     <div className="MainPage_rest">
         <div>
