@@ -89,4 +89,24 @@
     display: flex;
     align-items: center;
 }
+.Change_box{
+  width:25%;
+  height:30%;
+  background-color: rgb(221, 217, 217);
+  border-radius: 20px;
+  position: absolute;
+  right: 15%;
+  top: 8%;
 
+  z-index: 9999;
+}
+.Change_top{
+    width: 100%;
+    height: 10%;
+    background-color: red;
+}
+.Change_context{
+    width: 100%;
+    height: 90%;
+    background-color: purple;
+}

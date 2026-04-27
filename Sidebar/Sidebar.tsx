@@ -15,10 +15,7 @@ export default function Sidebar() {
 useEffect(() => {
   fetch(`${API_URL}/Authorization/MyCompanies`, {
     method:"GET",
-    credentials: "include",
-     headers: {
-    Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-  }
+    credentials: "include"
   })
    .then(res => {
     if (!res.ok) {
@@ -44,7 +41,7 @@ const handleCompanyClick = async (companyId: number) => {
 
   localStorage.setItem("accessToken", token.toString());
   localStorage.setItem("companyId", companyId.toString());
-
+  
    navigator(`/MainPage/MainContent/company/${companyId}`);
 };
 

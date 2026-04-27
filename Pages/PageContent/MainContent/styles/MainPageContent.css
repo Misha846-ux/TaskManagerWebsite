@@ -18,19 +18,11 @@
     width: 20%;
     margin-left: 10%;
     display: flex;
-    
 }
 .BoxForCalendar{
     height: 100%;
     width: 70%;
     
-}
-.Fake_calendar{
-    justify-self:flex-start;
-    height: 99%;
-    width: 30%;
-    background-color: white;
-  
 }
 .Members-To_Do{
     display: flex;
