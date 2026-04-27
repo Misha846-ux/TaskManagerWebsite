@@ -5,12 +5,20 @@ import comp_img from "./photos/company_img.png"
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import type { Company } from '../utilities/Types/Company';
+import type { ProjectType } from '../utilities/Types/ProjectType';
+import { GetProjects } from '../utilities/Methods/ProjectMethods';
+import ActionsMenu from "../ActionsMenu/ActionsMenu";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Sidebar() {
   const navigator = useNavigate()
 
   const [companies, setCompanies] = useState<Company[]>([]);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(() => {
+    const stored = localStorage.getItem("selectedProjectId");
+    return stored ? Number(stored) : null;
+  });
 
 useEffect(() => {
   fetch(`${API_URL}/Authorization/MyCompanies`, {
@@ -32,6 +40,14 @@ useEffect(() => {
   .catch(() => {
     setCompanies([]); 
   });
+
+  GetProjects()
+    .then((data) => {
+      setProjects(Array.isArray(data) ? data : []);
+    })
+    .catch(() => {
+      setProjects([]);
+    });
 }, []);
 
 const handleCompanyClick = async (companyId: number) => {
@@ -47,6 +63,12 @@ const handleCompanyClick = async (companyId: number) => {
 
    navigator(`/MainPage/MainContent/company/${companyId}`);
 };
+
+  const handleProjectClick = (projectId: number) => {
+    localStorage.setItem("selectedProjectId", String(projectId));
+    setSelectedProjectId(projectId);
+    navigator(`/MainPage/TaskContent/${projectId}`);
+  };
 
   const OnClick = () => {
     localStorage.clear();
@@ -141,7 +163,14 @@ const onHandleSubmit = async (e:React.FormEvent) =>{
             <div className='No_companies'><b>No companies</b></div>
           ):(
           companies.map(company=>(
-            <div key={company.id} className='Company'>
+            <div key={company.id} className='Company' style={{ position: 'relative' }}>
+              <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
+                <ActionsMenu
+                  entityId={company.id}
+                  onDelete={(id) => console.log('delete', id)}
+                  onUpdate={(id) => console.log('update', id)}
+                />
+              </div>
               <div className='Company_top'>Company name</div>
               <div className='Company_profile'>
               <div className='Company_name'>
@@ -153,8 +182,23 @@ const onHandleSubmit = async (e:React.FormEvent) =>{
                 </div>
               </div>
           )))}
-        </div>
-        <button className='LogOut_button' onClick={OnClick}><b>LogOut</b></button>
+        </div>        <div className='sidebar_subsection'>
+          <h2 className='sidebar_subtitle'>Your Projects</h2>
+          {!projects.length ? (
+            <div className='No_companies'><b>No projects</b></div>
+          ) : (
+            projects.map((project) => (
+              <div
+                key={project.id}
+                className={`Company project-item${selectedProjectId === project.id ? ' active' : ''}`}
+                onClick={() => handleProjectClick(project.id)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className='Company_name'><b>{project.title}</b></div>
+              </div>
+            ))
+          )}
+        </div>        <button className='LogOut_button' onClick={OnClick}><b>LogOut</b></button>
     </div>
   )
 }
