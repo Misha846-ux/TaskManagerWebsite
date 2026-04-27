@@ -5,7 +5,7 @@ import "./styles/TaskPageContent.css";
 import TasksCard from '../Сalendar/TasksCard/TasksCard';
 import TaskCreatorComp from './components/TaskCreatorComp';
 import PlacerForTasksComp from './components/PlacerForTasksComp';
-import Modal from './components/TestModal';
+import Modal from './components/CreateTaskModal';
 
 export default function TaskPageContent() {
   const [open, setOpen] = React.useState(false);

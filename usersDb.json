@@ -2,25 +2,6 @@
     "users" : [
   {
     "name": "Danil Kutumov",
-<<<<<<< HEAD
-    "password": "password123"
-  },
-  {
-    "name": "Bob",
-    "password": "qwerty456"
-  },
-  {
-    "name": "Charlie",
-    "password": "charlie789"
-  },
-  {
-    "name": "Diana",
-    "password": "diana321"
-  },
-  {
-    "name": "Eve",
-    "password": "eve999"
-=======
     "password": "password123",
     "email": "danil@gmail.com"
   },
@@ -43,7 +24,6 @@
     "name": "Eve",
     "password": "eve999",
     "email": "eve@gmail.com"
->>>>>>> d10d65af7a3d73ed28e2df4ae2489846115ffa46
   }
 ]
 
