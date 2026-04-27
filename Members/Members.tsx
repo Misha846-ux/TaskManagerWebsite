@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 
 const Members = () => {
     const [users, setUsers] = useState<UserType[]>([]);
-    const { companyId } = useParams();
+    // const { companyId } = useParams();
     const navigator = useNavigate();
 
     const OnClick = () => {
@@ -17,13 +17,16 @@ const Members = () => {
     }
 
     useEffect(()=>{
-        GetUsers().then((value) => {
+    // if (!companyId) return;
+
+    GetUsers()
+        .then((value) => {
             setUsers(Array.isArray(value) ? value : []);
         })
         .catch(() => {
             setUsers([]);
         });
-    },[companyId]);
+},[]);
     return(
         <div className="Mambers_background">
             <div className="Members_top">Members <button onClick={OnClick} className='User_create_button'>Create +</button></div>

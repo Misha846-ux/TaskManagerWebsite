@@ -22,7 +22,7 @@ const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
     const profileString = localStorage.getItem("user");
     const profile: UserType | null = profileString ? JSON.parse(profileString) : null;
 
-
+ const [isCreateOpen, setIsCreateOpen] = useState(false);
     return( 
         <>
        
@@ -33,7 +33,13 @@ const Header:React.FC<HeaderProps> = ({ isOpen, setIsOpen }) =>{
             <input className="search" placeholder="Search Project..." onChange={OnChange}/>
             <button className="search_button"></button>
             </div>
-            <button className="message_button"></button>
+            <button className="message_button" onClick={()=>setIsCreateOpen(true)}></button>
+            {isCreateOpen &&(
+                <div className="Change_box" onMouseLeave={()=>setIsCreateOpen(false)} >
+                    <div className="Change_top">Changes</div>
+                    <div className="Change_context"></div>
+                </div>
+            )}
             <div className="profile">
             <b><div className="profile_name">{profile?.userName || "Guest"}</div></b>
             <img className="profile_image" src={profile_img}/>

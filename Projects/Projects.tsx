@@ -12,14 +12,21 @@ const Projects = () =>{
     const [projects, SetProjects] = useState<ProjectType[]>([]);
     const query = useSelector((state: RootState) => state.search.query);
     const { companyId } = useParams();
-        useEffect(()=>{
-                GetProjects().then((value) => {
-                    SetProjects(Array.isArray(value) ? value : []);
-                })
-                .catch(() => {
-                    SetProjects([]);
-                });
-            },[companyId]);
+        useEffect(() => {
+  if (!companyId) return;
+
+  const loadProjects = async () => {
+    try {
+      const data = await GetProjects(Number(companyId));
+      SetProjects(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  loadProjects();
+}, [companyId]);
+    
     const [isCreateOpen, setIsCreateOpen] = useState(false);
 
     const [newProject, setNewProject] = useState({
@@ -34,12 +41,13 @@ const Projects = () =>{
         [name]:value
       }));
     };
+    
     const onHandleSubmit = async (e:React.FormEvent) =>{
       e.preventDefault();
       
       const companyId = Number(localStorage.getItem("companyId"));
 
-      const response = await fetch(`${API_URL}/projects/`, {
+      const response = await fetch(`${API_URL}/Projects/`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -56,11 +64,11 @@ const Projects = () =>{
   throw new Error(`Error ${response.status}: ${text}`);
 }
     
-      
-    
-     await GetProjects().then((value) => {
-  SetProjects(Array.isArray(value) ? value : []);
-    });
+     await response.json();
+
+const data = await GetProjects(companyId);
+SetProjects(data);
+
     
       setIsCreateOpen(false);
     
