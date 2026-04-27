@@ -14,8 +14,8 @@ const handleResponse = async (response: Response) => {
   return response.status === 204 ? null : response.json();
 };
 
-export async function GetProjects() {
-  const response = await fetch(`${API_URL}/api/projects/my-projects`, {
+export async function GetProjects(companyId:number) {
+  const response = await fetch(`${API_URL}/Projects/by-company/${companyId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
@@ -24,7 +24,7 @@ export async function GetProjects() {
 }
 
 export async function GetProject(projectId: string | number) {
-  const response = await fetch(`${API_URL}/api/projects/my/${projectId}`, {
+  const response = await fetch(`${API_URL}/projects/my/${projectId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
@@ -33,7 +33,7 @@ export async function GetProject(projectId: string | number) {
 }
 
 export async function UpdateProject(projectId: string | number, data: Record<string, unknown>) {
-  const response = await fetch(`${API_URL}/api/projects/my/${projectId}`, {
+  const response = await fetch(`${API_URL}/projects/my/${projectId}`, {
     method: "PUT",
     headers: authHeaders(),
     body: JSON.stringify(data),
@@ -42,7 +42,7 @@ export async function UpdateProject(projectId: string | number, data: Record<str
 }
 
 export async function DeleteProject(projectId: string | number) {
-  const response = await fetch(`${API_URL}/api/projects/my/${projectId}`, {
+  const response = await fetch(`${API_URL}/projects/my/${projectId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -52,7 +52,7 @@ export async function DeleteProject(projectId: string | number) {
 }
 
 export async function GetProjectUsers(projectId: string | number) {
-  const response = await fetch(`${API_URL}/api/projects/${projectId}/users`, {
+  const response = await fetch(`${API_URL}/projects/${projectId}/users`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
@@ -61,7 +61,7 @@ export async function GetProjectUsers(projectId: string | number) {
 }
 
 export async function AddUserToProject(projectId: string | number, userId: string | number) {
-  const response = await fetch(`${API_URL}/api/projects/my/${projectId}/users/${userId}`, {
+  const response = await fetch(`${API_URL}/projects/my/${projectId}/users/${userId}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -72,7 +72,7 @@ export async function AddUserToProject(projectId: string | number, userId: strin
 }
 
 export async function RemoveUserFromProject(projectId: string | number, userId: string | number) {
-  const response = await fetch(`${API_URL}/api/projects/my/${projectId}/users/${userId}`, {
+  const response = await fetch(`${API_URL}/projects/my/${projectId}/users/${userId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

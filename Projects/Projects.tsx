@@ -39,7 +39,7 @@ const Projects = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const result = await GetProjects();
+      const result = await GetProjects(Number(companyId));
       setProjects(Array.isArray(result) ? result : []);
     } catch (err) {
       console.error(err);
