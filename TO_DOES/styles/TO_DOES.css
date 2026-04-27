@@ -37,11 +37,13 @@
 .TO_DOES_Project{
     display: flex;
     align-items: center;
-    height: 43%;
+    height: 27%;
     width: auto;
     background-color: white;
     margin: 1%;
     border-radius: 15px;
+    text-decoration: none;
+    color: black;
 }
 .TO_DOES_Project_button{
     height: 70%;

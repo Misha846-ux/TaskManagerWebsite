@@ -1,42 +1,50 @@
 import "./styles/Members.css";
-import type { Profile } from "../Header/type/Profile";
 import profile_img from "../Header/photo/profile_image.jpeg";
+import { useEffect, useState } from "react";
+import { GetUsers } from "../utilities/Methods/UsersMethods";
+import type { UserType } from "../utilities/Types/UserType";
+import { useNavigate } from 'react-router-dom'
+import { useParams } from "react-router-dom";
+
 const Members = () => {
-    const profile_1:Profile={
-        name: "Ruslan",
-        surname:"Opihaylenko",
-        image: profile_img,
-    };
-    const profile_2:Profile={
-        name: "Misha",
-        surname:"Gladkov",
-        image: profile_img,
-    };
-    const profile_3:Profile={
-        name: "Dania",
-        surname:"Kutumov",
-        image: profile_img,
-    };
+    const [users, setUsers] = useState<UserType[]>([]);
+    // const { companyId } = useParams();
+    const navigator = useNavigate();
+
+    const OnClick = () => {
+    localStorage.clear();
+    navigator("/");
+    }
+
+    useEffect(()=>{
+    // if (!companyId) return;
+
+    GetUsers()
+        .then((value) => {
+            setUsers(Array.isArray(value) ? value : []);
+        })
+        .catch(() => {
+            setUsers([]);
+        });
+},[]);
     return(
         <div className="Mambers_background">
-            <div className="Members_top">Members</div>
+            <div className="Members_top">Members <button onClick={OnClick} className='User_create_button'>Create +</button></div>
             <div className="Members_content">
                 <div className="Scroll_top">
                 <div>Member Info</div>
                 </div>
                 <div className="Scroll_content">
-                <div className="Members_profile">
-                    <img className="Members_profile_image" src={profile_1.image}/>
-                    <div className="Members_profile_name">{profile_1.name} {profile_1.surname}</div>
-                </div>
-                <div className="Members_profile">
-                    <img className="Members_profile_image" src={profile_2.image}/>
-                    <div className="Members_profile_name">{profile_2.name} {profile_2.surname}</div>
-                </div>
-                <div className="Members_profile">
-                    <img className="Members_profile_image" src={profile_3.image}/>
-                    <div className="Members_profile_name">{profile_3.name} {profile_3.surname}</div>
-                </div>
+                    {!users.length ? (
+                        <div className="No_users"><b>No users</b></div>
+                    ) : (
+                    users.map((user) => (
+                        <div className="Members_profile" key={user.id}>
+                        <img className="Members_profile_image" src={profile_img}/>
+                        <div className="Members_profile_name">{user.userName}</div>
+                        </div>
+                    )))}
+                
                 </div>
             </div>
         </div>

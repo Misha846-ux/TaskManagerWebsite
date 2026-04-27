@@ -6,4 +6,5 @@ export type TaskType = {
   isCompleted: boolean;
   priority: 'Low' | 'Medium' | 'High';
   dueDate: Date;
+  parantId: number
 };

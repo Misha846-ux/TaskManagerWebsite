@@ -11,6 +11,8 @@
     width: auto;
     height: 10%;
     margin: 1%;
+    display: flex;
+    align-items: center;
 }
 .Members_content{
     height: 80%;
@@ -52,4 +54,18 @@
     background-color: white;
     border-radius: 15px;
     margin: 1%;
+}
+.No_users{
+    height: 30%;
+    width: 30%;
+    font-size: 20px;
+    margin-left: 45%;
+}
+.User_create_button{
+  height: 100%;
+  width: 20%;
+  background-color: rgb(255, 192, 45);
+  font-size: 20px;
+  border-radius: 12px;
+  margin-left: 60%;
 }

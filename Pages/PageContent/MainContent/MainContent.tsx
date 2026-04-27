@@ -9,8 +9,11 @@ import "./styles/MainPageContent.css"
 import Projects from '../../../Projects/Projects';
 import Members from '../../../Members/Members';
 import TO_DOES from '../../../TO_DOES/TO_DOES';
-export default function MainContent() {
+import { useEffect, useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom';
 
+export default function MainContent() {
+ 
   return (
     <div className="MainPage_rest">
         <div>
@@ -21,8 +24,8 @@ export default function MainContent() {
               <div className='BoxForCalendar'>
                 <Calendar/>
               </div>
-              <div style={{width: "29%", height: "50%"}}>
-                <TasksCard title='COMPLETED TASKS' count={5}/>
+              <div style={{width: "29%", height: "99%"}}>
+                <TasksCard title='COMPLETED TASKS' count={0.1}/>
                 <TasksCard title='PENDING TASKS' count={100}/>
               </div>
               
