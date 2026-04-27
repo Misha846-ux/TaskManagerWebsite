@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { useRevalidator } from 'react-router-dom'
 import "../styles/Tasks.css";
 
-const SERVER_BASE = import.meta.env.VITE_Tasks_SERVER_URL
+const SERVER_BASE = import.meta.env.VITE_API_URL
 
 export default function TaskCreatorComp() {
   const revalidator = useRevalidator()
   const [title, setTitle] = useState('')
-  const [descriptionShort, setDescriptionShort] = useState('')
   const [descriptionFull, setDescriptionFull] = useState('')
   const [priority, setPriority] = useState<'Low' | 'Medium' | 'High'>('Low')
   const [dueDate, setDueDate] = useState('') // YYYY-MM-DD
@@ -24,17 +23,17 @@ export default function TaskCreatorComp() {
 
     const payload = {
       id: Date.now(),
-      title: title.trim(),
-      description_short: descriptionShort.trim(),
-      description_full: descriptionFull.trim(),
-      isCompleted: false,
+      taskName: title.trim(),
+      description: descriptionFull.trim(),
       priority,
-      dueDate: dueDate || null
+      deadline: dueDate || null,
+      projectId: 1,//hardcode
+      userId: 1 //hardcode
     }
 
     setSubmitting(true)
     try {
-      const url = `${SERVER_BASE.replace(/\/$/, '')}`
+      const url = `${SERVER_BASE.replace(/\/$/, '')}/Task/AddTask`
       const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -49,7 +48,6 @@ export default function TaskCreatorComp() {
       try { revalidator.revalidate() } catch {}
       // clear form on success
       setTitle('')
-      setDescriptionShort('')
       setDescriptionFull('')
       setPriority('Low')
       setDueDate('')
@@ -76,17 +74,7 @@ export default function TaskCreatorComp() {
       </label>
 
       <label>
-        <div className="label-text">Short description</div>
-        <input
-          className="input"
-          type="text"
-          value={descriptionShort}
-          onChange={(e) => setDescriptionShort(e.target.value)}
-        />
-      </label>
-
-      <label>
-        <div className="label-text">Full description</div>
+        <div className="label-text">Description</div>
         <textarea
           className="input"
           value={descriptionFull}

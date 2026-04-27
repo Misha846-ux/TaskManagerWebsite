@@ -5,7 +5,7 @@ import Timer from "../Timer/Timer";
 import Project_Worked from "../Project_Worked/Project_Worked";
 import MainContent from "./PageContent/MainContent/MainContent";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import TaskPageContent from "./PageContent/TaskPageContent/TaskPageContent";
+import TaskPageContent from "../TaskPageContent/TaskPageContent";
 import Sidebar from "../Sidebar/Sidebar";
 import { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom';

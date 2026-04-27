@@ -3,10 +3,10 @@ import { createBrowserRouter, useNavigate } from 'react-router-dom'
 import MainPage from './Pages/MainPage'
 import MainContent from './Pages/PageContent/MainContent/MainContent'
 import LoginMain from './Login/LoginMain'
-import TaskPageContent from './Pages/PageContent/TaskPageContent/TaskPageContent'
+import TaskPageContent from './TaskPageContent/TaskPageContent'
 import Error404 from './Errors/Error404'
 import Project_Worked from './Project_Worked/Project_Worked'
-import getTasks from './utilities/Methods/getTasks'
+import getTasks from './utilities/Methods/TasksMethods'
 import LoginIn from './Login/LoginIn'
 import ForgotPassword from './Login/ForgotPassword'
 import ProtectedRoute from './Protected_Router'
@@ -32,16 +32,19 @@ export const router = createBrowserRouter([
                     {
                         path: "",
                         element: <Project_Worked/>,
+                    },
+                    {
+                        path: ""
                     }
                     ]
                 },
                 {
-                path: "TaskContent/:id",
+                path: "TaskContent",
                 element: <TaskPageContent/>,
                 hydrateFallbackElement: <div>Loading...</div>,
-                loader: async ({params}) => {
-                    return await getTasks(params.id as string)
-                }
+                // loader: async () => {
+                //     return await getTasks()
+                // }
                 }
             ]
         }
