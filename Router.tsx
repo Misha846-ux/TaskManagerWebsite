@@ -10,6 +10,7 @@ import getTasks from './utilities/Methods/TasksMethods'
 import LoginIn from './Login/LoginIn'
 import ForgotPassword from './Login/ForgotPassword'
 import ProtectedRoute from './Protected_Router'
+import Members from './Members/Members'
 //npx json-server projectsDb.json
 //npx json-server usersDb.json --port 3001
 //npx json-server tasks-server.json --port 3002
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
                 // loader: async () => {
                 //     return await getTasks()
                 // }
+                },
+                {
+                path: "Members/:id",
+                element: <Members/>
                 }
             ]
         }
