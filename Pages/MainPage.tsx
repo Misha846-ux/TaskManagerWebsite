@@ -25,7 +25,7 @@ const MainPage: React.FC = () =>{
     if (!storedCompanyId) return;
 
     const companyId = Number(storedCompanyId);
-
+    console.log(API_URL);
     const response = await fetch(`${API_URL}/Authorization/Refresh?companyId=${companyId}`, {
       method: "POST",
       credentials: "include"
