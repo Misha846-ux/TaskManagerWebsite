@@ -74,7 +74,7 @@ const Projects = () => {
     const companyIdValue = Number(localStorage.getItem("companyId"));
 
     try {
-      const response = await fetch(`${API_URL}/api/projects`, {
+      const response = await fetch(`${API_URL}/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
