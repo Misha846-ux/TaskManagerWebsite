@@ -22,13 +22,11 @@ export default function TaskCreatorComp() {
     }
 
     const payload = {
-      id: Date.now(),
       taskName: title.trim(),
       description: descriptionFull.trim(),
       priority,
       deadline: dueDate || null,
-      projectId: 1,//hardcode
-      userId: 1 //hardcode
+      projectId: 1
     }
 
     setSubmitting(true)

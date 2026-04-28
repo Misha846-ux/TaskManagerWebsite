@@ -1,5 +1,5 @@
 export default async function getTasks() {
-    const baseUrl = import.meta.env.VITE_API_URL + '/Tasks/admin/GetAll';
+    const baseUrl = import.meta.env.VITE_API_URL + '/Task/user/GetAll';
     let limit = 10;
     let page = 1;
 
@@ -13,7 +13,7 @@ export default async function getTasks() {
         }
 
         const data = await response.json();
-
+        
         const tasks = data.items ?? data;
 
         if (!tasks.length) break; 

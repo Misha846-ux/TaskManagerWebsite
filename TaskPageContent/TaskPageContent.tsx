@@ -30,7 +30,7 @@ export default function TaskPageContent() {
     </div>
     </div>
     <Fragment>
-    <button onClick={() => setOpen(!open)} style={{ width: "100px", height: "40px", fontSize: "16px", cursor: "pointer" }}>
+    <button onClick={() => setOpen(!open)} style={{ width: "100px", height: "40px", fontSize: "16px", cursor: "pointer", color: "black", backgroundColor: "orange", border: "none", borderRadius: "4px" }}>
       Create Task
     </button>
     <Modal open={open} closeModal={closeModal} ></Modal>
