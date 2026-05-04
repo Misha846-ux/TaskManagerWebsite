@@ -37,14 +37,6 @@ useEffect(() => {
   .catch(() => {
     setCompanies([]); 
   });
-
-  GetProjects()
-    .then((data) => {
-      setProjects(Array.isArray(data) ? data : []);
-    })
-    .catch(() => {
-      setProjects([]);
-    });
 }, []);
 
 const handleCompanyClick = async (companyId: number) => {
@@ -124,37 +116,6 @@ const onHandleSubmit = async (e:React.FormEvent) =>{
       </div>
         <h1 className="sidebar_top">Your Companies</h1>
         <button className='Company_create_button' onClick={()=>setIsCreateOpen(true)}>Create +</button>
-        {isCreateOpen &&(
-          <form className='create_box' onMouseLeave={()=>setIsCreateOpen(false)}  onSubmit={onHandleSubmit}>
-            <div className='company_create_context'>
-              <div className='company_insert'>
-                <label className='company_top'><b>Company name</b></label>
-                <input
-                className='company_input'
-                type="text"
-                name="name"
-                placeholder="Write name friend"
-                value={newCompany.name}
-                onChange={handleOnChange}
-                required
-            />
-              </div>
-              <div className='company_insert'>
-                <label className='company_top'><b>Description</b></label>
-                <input
-                className='company_input'
-                type="text"
-                name="description"
-                placeholder="Write description friend"
-                value={newCompany.description}
-                onChange={handleOnChange}
-                required
-                />
-              </div>
-            </div>
-            <button className='company_create' type='submit'>Create</button>
-          </form>
-        )}
         <div className='Companies_list'>
           {!companies.length ?(
             <div className='No_companies'><b>No companies</b></div>
@@ -179,23 +140,8 @@ const onHandleSubmit = async (e:React.FormEvent) =>{
                 </div>
               </div>
           )))}
-        </div>        <div className='sidebar_subsection'>
-          <h2 className='sidebar_subtitle'>Your Projects</h2>
-          {!projects.length ? (
-            <div className='No_companies'><b>No projects</b></div>
-          ) : (
-            projects.map((project) => (
-              <div
-                key={project.id}
-                className={`Company project-item${selectedProjectId === project.id ? ' active' : ''}`}
-                onClick={() => handleProjectClick(project.id)}
-                style={{ cursor: 'pointer' }}
-              >
-                <div className='Company_name'><b>{project.title}</b></div>
-              </div>
-            ))
-          )}
-        </div>        <button className='LogOut_button' onClick={OnClick}><b>LogOut</b></button>
+        </div>        
+        <button className='LogOut_button' onClick={OnClick}><b>LogOut</b></button>        
     </div>
   )
 }
