@@ -4,27 +4,32 @@ import {
   GetProjects,
   UpdateProject,
   DeleteProject,
+  CreateProject,
 } from "../utilities/Methods/ProjectMethods";
 import type { ProjectType } from "../utilities/Types/ProjectType";
 import { useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
 import { useNavigate, useParams } from "react-router-dom";
 import ActionsMenu from "../ActionsMenu/ActionsMenu";
+import Modal from '../components/Modal';
 
-const API_URL = import.meta.env.VITE_API_URL;
 const Projects = () => {
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(() => {
     const stored = localStorage.getItem("selectedProjectId");
     return stored ? Number(stored) : null;
   });
-  const [editingProjectId, setEditingProjectId] = useState<number | null>(null);
-  const [editTitle, setEditTitle] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const query = useSelector((state: RootState) => state.search.query);
   const navigate = useNavigate();
   const { companyId } = useParams();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState<Record<string, string>>({});
+  const [modalFields, setModalFields] = useState<{ name: string; label: string; type: string; value: string }[]>([]);
+  const [modalTitle, setModalTitle] = useState('');
+  const [onModalSave, setOnModalSave] = useState<((data: Record<string, string>) => void) | null>(null);
 
   const persistSelectedProjectId = (projectId: number | null) => {
     setSelectedProjectId(projectId);
@@ -74,22 +79,10 @@ const Projects = () => {
     const companyIdValue = Number(localStorage.getItem("companyId"));
 
     try {
-      const response = await fetch(`${API_URL}/projects`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({
-          Title: newProject.title,
-          CompanyId: companyIdValue,
-        }),
+      await CreateProject({
+        Title: newProject.title,
+        CompanyId: companyIdValue,
       });
-
-      if (!response.ok) {
-        const text = await response.text();
-        throw new Error(`Error ${response.status}: ${text}`);
-      }
 
       await loadProjects();
       setIsCreateOpen(false);
@@ -112,37 +105,38 @@ const Projects = () => {
   };
 
   const handleEditStart = (id: string | number, title: string) => {
-    setEditingProjectId(Number(id));
-    setEditTitle(title);
-  };
+    setError(null);
+    setModalTitle('Update Project');
+    setModalFields([
+      { name: 'title', label: 'Project Title', type: 'text', value: title },
+    ]);
+    setModalData({ title });
+    setOnModalSave(() => async (data: Record<string, string>) => {
+      const title = data.title.trim();
+      if (!title) return;
+      setError(null);
 
-  const handleEditCancel = () => {
-    setEditingProjectId(null);
-    setEditTitle("");
-  };
-
-  const handleUpdate = async (id: string | number) => {
-    if (!editTitle.trim()) return;
-    try {
-      await UpdateProject(id, { title: editTitle.trim() });
-      setProjects((prev) =>
-        prev.map((project) =>
-          project.id === Number(id)
-            ? {
-                ...project,
-                title: editTitle.trim(),
-              }
-            : project
-        )
-      );
-      if (selectedProjectId === Number(id)) {
-        persistSelectedProjectId(Number(id));
+      try {
+        await UpdateProject(id, { title });
+        setProjects((prev) =>
+          prev.map((project) =>
+            project.id === Number(id)
+              ? {
+                  ...project,
+                  title,
+                }
+              : project
+          )
+        );
+        if (selectedProjectId === Number(id)) {
+          persistSelectedProjectId(Number(id));
+        }
+      } catch (err) {
+        console.error(err);
+        setError("Unable to update project.");
       }
-      handleEditCancel();
-    } catch (err) {
-      console.error(err);
-      setError("Unable to update project.");
-    }
+    });
+    setIsModalOpen(true);
   };
 
   const handleManageMembers = (id: string | number) => {
@@ -218,39 +212,28 @@ const Projects = () => {
                     </div>
                     <button className="TO_DOES_Project_button" type="button" onClick={() => handleProjectClick(item.id)} />
 
-                    {editingProjectId === item.id ? (
-                      <div className="Project_edit_box">
-                        <input
-                          className="project_input"
-                          value={editTitle}
-                          onChange={(e) => setEditTitle(e.target.value)}
-                          placeholder="Project title"
-                        />
-                        <button className="project_create" type="button" onClick={() => handleUpdate(item.id)}>
-                          Save
-                        </button>
-                        <button className="project_create" type="button" onClick={handleEditCancel}>
-                          Cancel
-                        </button>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="TO_DOES_Project_name"><b>{item.title}</b></div>
-                        <div className="TO_DOES_Project_percent">{percent}%</div>
-                        <div className="TO_DOES_Project_percent_background_line">
-                          <div
-                            className="TO_DOES_Project_percent_line"
-                            style={{ "--percent": `${percent}%` } as React.CSSProperties}
-                          ></div>
-                        </div>
-                      </>
-                    )}
+                    <div className="TO_DOES_Project_name"><b>{item.title}</b></div>
+                    <div className="TO_DOES_Project_percent">{percent}%</div>
+                    <div className="TO_DOES_Project_percent_background_line">
+                      <div
+                        className="TO_DOES_Project_percent_line"
+                        style={{ "--percent": `${percent}%` } as React.CSSProperties}
+                      ></div>
+                    </div>
                   </div>
                 );
               })
           )}
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={onModalSave || (() => {})}
+        title={modalTitle}
+        fields={modalFields}
+        initialData={modalData}
+      />
     </div>
   );
 };
