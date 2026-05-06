@@ -6,7 +6,11 @@ export default async function getTasks() {
     let collected: any[] = [];
 
     while (collected.length <= 3) {
-        const response = await fetch(`${baseUrl}?pagenum=${page}&limit=${limit}`);
+        const response = await fetch(`${baseUrl}?pagenum=${page}&limit=${limit}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+            }
+        });
 
         if (!response.ok) {
             throw new Error("Failed to fetch tasks");

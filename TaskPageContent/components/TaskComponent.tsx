@@ -13,9 +13,9 @@ export default function TaskPageContent(obj: TaskGetDto) {
   async function handleToggle(e: React.ChangeEvent<HTMLInputElement>) {
     setIsCompleted(e.target.checked);
     try {
-            const res = await fetch(import.meta.env.VITE_Tasks_SERVER_URL +`/tasks/${obj.id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
+            const res = await fetch(import.meta.env.VITE_API_URL +`/Task/user/UpdateById/${obj.id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("accessToken")}` },
                 body: JSON.stringify({ completed: e.target.checked }),
             });
         }catch {
