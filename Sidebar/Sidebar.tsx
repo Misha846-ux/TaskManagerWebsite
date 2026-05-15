@@ -164,37 +164,6 @@ const handleCompanyUpdate = async (companyId: string | number) => {
       </div>
         <h1 className="sidebar_top">Your Companies</h1>
         <button className='Company_create_button' onClick={()=>setIsCreateOpen(true)}>Create +</button>
-        {isCreateOpen &&(
-          <form className='create_box' onMouseLeave={()=>setIsCreateOpen(false)}  onSubmit={onHandleSubmit}>
-            <div className='company_create_context'>
-              <div className='company_insert'>
-                <label className='company_top'><b>Company name</b></label>
-                <input
-                className='company_input'
-                type="text"
-                name="name"
-                placeholder="Write name friend"
-                value={newCompany.name}
-                onChange={handleOnChange}
-                required
-            />
-              </div>
-              <div className='company_insert'>
-                <label className='company_top'><b>Description</b></label>
-                <input
-                className='company_input'
-                type="text"
-                name="description"
-                placeholder="Write description friend"
-                value={newCompany.description}
-                onChange={handleOnChange}
-                required
-                />
-              </div>
-            </div>
-            <button className='company_create' type='submit'>Create</button>
-          </form>
-        )}
         <div className='Companies_list'>
           {!companies.length ?(
             <div className='No_companies'><b>No companies</b></div>
